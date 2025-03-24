@@ -1,14 +1,13 @@
 import streamlit as st
 import pickle
-st.subheader('Wheather App')
-pn=st.number_input('Enter precipitation')
-maxt=st.number_input('Enter max temperature')   
-mint=st.number_input('Enter min temperature')
-wind=st.number_input('Enter wind speed')
+st.subheader('Iris Flower Identification App')
+sl=st.number_input('Enter Sepal Length')
+sw=st.number_input('Enter Sepal Width')   
+pl=st.number_input('Enter Petal Length')
+pw=st.number_input('Enter Petal Width')
 button=st.button('Predict')
 
 if button:
-    model=pickle.load(open('wp.pkl','rb'))
-    res=model.predict([[pn,maxt,mint,wind]])[0]
-    st.markdown(f'### The weather will be {res}')
-    
+    knn=pickle.load(open('iris.pkl','rb'))
+    prediction=knn.predict([[sl,sw,pl,pw]])
+    st.write('The predicted species is:',{prediction[0]})
